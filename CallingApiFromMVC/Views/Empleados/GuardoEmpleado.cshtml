@@ -1,0 +1,108 @@
+﻿@model CallingApiFromMVC.Models.Pagos
+
+@{
+    ViewData["Title"] = "GuardoEmpleado";
+}
+
+<h1>Guardar Pago</h1>
+
+<h4>Pagos</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="GuardoEmpleado">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdEmpleado" class="control-label"></label>
+                <input asp-for="IdEmpleado" class="form-control" />
+                <span asp-validation-for="IdEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumeroCuenta" class="control-label"></label>
+                <input asp-for="NumeroCuenta" class="form-control" />
+                <span asp-validation-for="NumeroCuenta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AprobadoPor" class="control-label"></label>
+                <input asp-for="AprobadoPor" class="form-control" />
+                <span asp-validation-for="AprobadoPor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Concepto" class="control-label"></label>
+                <input asp-for="Concepto" class="form-control" />
+                <span asp-validation-for="Concepto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MontoTotal" class="control-label"></label>
+                <input asp-for="MontoTotal" class="form-control" />
+                <span asp-validation-for="MontoTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreEmpleado" class="control-label"></label>
+                <input asp-for="NombreEmpleado" class="form-control" />
+                <span asp-validation-for="NombreEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreCompleto" class="control-label"></label>
+                <input asp-for="NombreCompleto" class="form-control" />
+                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Posicion" class="control-label"></label>
+                <input asp-for="Posicion" class="form-control" />
+                <span asp-validation-for="Posicion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Departamento" class="control-label"></label>
+                <input asp-for="Departamento" class="form-control" />
+                <span asp-validation-for="Departamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Supervisor" class="control-label"></label>
+                <input asp-for="Supervisor" class="form-control" />
+                <span asp-validation-for="Supervisor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a href="@Url.Action("ListaEmpleados", "Empleados")" class="btn btn-success float-left" id="btnSave">Registrar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript">
+
+    $("#btnSave").click(function () {
+        var oPago = {
+            IdEmpleado: $("#txtIdEmpleado").val(),
+            NombreCompleto: $("#txtNombreCompleto").val(),
+            Posicion: $("#txtPosicion").val(),
+            Departamento: $("#txtDepartamento").val(),
+            Supervisor: $("#txtSupervisor").val()
+        };
+        $.post("/Pagos/AddUpdatePagos", oPago).done(function (data) {
+            GetAllEmpleados
+            });
+    });
+</script>

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CallingApiFromMVC.Models.Pagos>
+
+
+@{
+    ViewData["Title"] = "ListaPagos";
+}
+
+<h1>ListaPagos</h1>
+
+<p>
+    <a href="@Url.Action("SavePagos", "Pagos")">Crear</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:auto">
+                Codigo de Pago
+            </th>
+            <th style="width:auto">
+                Empleado
+            </th>
+            <th style="width:auto">
+                Fecha
+            </th>
+            <th style="width:auto">
+                Numero de Cuenta
+            </th>
+            <th style="width:auto">
+                Descripcion
+            </th>
+            <th style="width:auto">
+                Concepto
+            </th>
+            <th style="width:auto">
+                Aprobado Por
+            </th>
+            <th style="width:auto">
+                Total
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="width:auto">
+                    @Html.DisplayFor(modelItem => item.IdPago)
+                </td>
+                <td style="width:auto">
+                    @Html.DisplayFor(modelItem => item.NombreEmpleado)
+                </td>
+                <td style="width:auto">
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td style="width:auto">
+                    @Html.DisplayFor(modelItem => item.NumeroCuenta)
+                </td>
+                <td style="width:auto">
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td style="width:auto">
+                    @Html.DisplayFor(modelItem => item.Concepto)
+                </td>
+                <td style="width:auto">
+                    @Html.DisplayFor(modelItem => item.AprobadoPor)
+                </td>
+                <td style="width:auto">
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td style="width:auto">
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h5 class="d-flex justify-content-end">
+    <p>Total a Pagar: </p>
+    @ViewData["t"]
+</h5>

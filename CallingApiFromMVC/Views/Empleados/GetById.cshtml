@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CallingApiFromMVC.Models.Empleado_Pago>
+
+@{
+    ViewData["Title"] = "GetById";
+}
+
+<h1>Pagos del Empleado</h1>
+
+<p>
+    <a asp-action="Create">Crear Nuevo</a>
+</p>
+<div class="d-flex justify-content-between">
+    <h4>Empleado: @ViewData["NombreCompleto"]</h4>
+    <h4>Posicion: @ViewData["Posicion"]</h4>
+    <h4>Supervisor: @ViewData["Supervisor"]</h4>
+    <h4>Departamento: @ViewData["Departamento"]</h4>
+</div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:auto">
+                Codigo de Pago
+            </th>
+            <th style="width:auto">
+                Fecha
+            </th>
+            <th style="width:auto">
+                Numero de Cuenta
+            </th>
+            <th style="width:auto">
+                Descripcion
+            </th>
+            <th style="width:auto">
+                Concepto
+            </th>
+            <th style="width:auto">
+                Aprobado Por
+            </th>
+            <th style="width:auto">
+                Total
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdPago)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroCuenta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Concepto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AprobadoPor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+
+                </td>
+                <td>
+                  
+                </td>
+            </tr>
+        }
+
+        </td>
+    </tbody>
+</table>
+<h5 class="d-flex justify-content-end">
+    <p>Total a Pagar: </p>
+    @ViewData["t"]
+</h5>
+

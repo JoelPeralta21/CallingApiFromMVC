@@ -1,0 +1,128 @@
+﻿@model List<CallingApiFromMVC.Models.Empleados>
+
+@{
+    ViewData["Title"] = "Empleados";
+}
+
+<h1>Lista de Empleados</h1>
+
+<p class="d-flex justify-content-between">
+    <a href="@Url.Action("Index", "Empleados")">Crear</a>
+    <button type="button" class="btn btn-primary">
+        <a href="@Url.Action("ListaPagos", "Pagos")" style="color:white">Ver Todos los Gastos</a>
+    </button>
+    
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:auto">
+                Codigo de Empleado
+            </th>
+            <th style="width:auto">
+                Nombre
+            </th>
+            <th style="width:auto">
+                Posicion
+            </th>
+            <th style="width:auto">
+                Departamento
+            </th>
+            <th style="width:auto">
+                Supervisor
+            </th>
+
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEmpleado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Posicion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Supervisor)
+            </td>
+            <td>
+                <button type="button" class="btn btn-warning ">
+                    @Html.ActionLink("Ver Pagos", "GetById", new { id = item.IdEmpleado }, new { style = "color:White" }) |
+                    @Html.ActionLink("Editar", "UpdateView", new { id = item.IdEmpleado }, new { style = "color:White" })
+                </button>
+            </td>
+        </tr>
+    }
+
+</table>
+<script type="text/javascript">
+    //$(document).ready(function () {
+
+    //});
+    //function GetAllEmpleados() {
+    //    $.getJSON("Empleados/GetAllEmpleados", function (Empleados) {
+    //        $("#tblEmpleados tbody tr").remove();
+    //        $.map(Empleados, function (empleado) {
+    //            $("#tblEmpleados tbody").append("<tr>"
+    //                + "<td>" + empleado.IdEmpleado + "</td>"
+    //                + "<td>" + empleado.NombreCompleto + "</td>"
+    //                + "<td>" + empleado.Posicion + "</td>"
+    //                + "<td>" + empleado.Departamento + "</td>"
+    //                + "<td>" + empleado.Supervisor + "</td>"
+    //                + "<td>"
+    //                + "           <button class='btn-success' onclick='Edit(" + empleado.IdEmpleado + ")' style='margin-right:5px;'>Edit</button>"
+    //                + "           <button class='btn-danger' onclick='Delete(" + empleado.IdEmpleado + ")'>Delete</button>"
+    //                + "</td>"
+    //                +"</tr>"
+    //            );
+    //        });
+    //    });
+    //}
+
+    function Edit(IdEmpleado) {
+        if (IdEmpleado > 0) {
+            $.getJSON("/Empleados/GetById?id" + IdEmpleado, function (empleado) {
+                $("txtIdEmpleado").val(empleado.IdEmpleado);
+                $("txtNombreCompleto").val(empleado.NombreCompleto);
+                $("txtPosicion").val(empleado.Posicion);
+                $("txtDepartamento").val(empleado.Departamento);
+                $("txtSupervisor").val(empleado.Supervisor);
+            });
+        }
+    }
+
+    //function Delete(IdEmpleado) {
+    //    if (IdEmpleado > 0) {
+    //        $.ajax({
+    //            url: "/Empleados/Delete?id" + IdEmpleado,
+    //            type: 'DELETE',
+    //            dataType: 'json',
+    //            success: function (data) {
+    //            },
+    //            error: function (ex) {
+    //                console.log('Error en la operacion');
+    //            }
+    //        });
+    //    }
+    //}
+
+    //$("#btnSave").click(function () {
+    //    var oEmpleado = {
+    //        IdEmpleado: $("#txtIdEmpleado").val(),
+    //        NombreCompleto: $("#txtNombreCompleto").val(),
+    //        Posicion: $("#txtPosicion").val(),
+    //        Departamento: $("#txtDepartamento").val(),
+    //        Supervisor: $("#txtSupervisor").val()
+    //    };
+    //    $.post("/Empleados/AddUpdateEmpleados", oEmpleado).done(function (data) {
+    //        GetAllEmpleados
+    //        });
+    //});
+</script>

@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Empleados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<h2>Agregar Empleados<</h2>>
+<div class="form-group" style="display:none;">
+    <input id="txtIdEmpleado" class="form-control" name="IdEmpleado"/>
+</div>
+<div class="form-group">
+    <label for ="NombreCompleto">Nombre Completo:</label>
+    <input id="txtNombreCompleto" class="form-control" name="NombreCompleto"/>
+</div>
+<div class="form-group">
+    <label for="Posicion">Posicion:</label>
+    <input id="txtPosicion" class="form-control" name="Posicion" />
+</div>
+<div class="form-group">
+    <label for="Departamento">Departamento:</label>
+    <input id="txtDepartamento" class="form-control" name="Departamento" />
+</div>
+<div class="form-group">
+    <label for="Supervisor">Supervisor:</label>
+    <input id="txtSupervisor" class="form-control" name="Supervisor" />
+</div>
+<div class="text-center panel.body">
+    @*<button id="btnSave" class="btn btn-primary">Insertar</button>*@
+    <a href="@Url.Action("ListaEmpleados", "Empleados")" class="btn btn-success float-left" id="btnSave">Registrar</a>
+</div> 
+
+
+<script type="text/javascript">
+    //$(document).ready(function () {
+
+    //});
+    //function GetAllEmpleados() {
+    //    $.getJSON("Empleados/GetAllEmpleados", function (Empleados) {
+    //        $("#tblEmpleados tbody tr").remove();
+    //        $.map(Empleados, function (empleado) {
+    //            $("#tblEmpleados tbody").append("<tr>"
+    //                + "<td>" + empleado.IdEmpleado + "</td>"
+    //                + "<td>" + empleado.NombreCompleto + "</td>"
+    //                + "<td>" + empleado.Posicion + "</td>"
+    //                + "<td>" + empleado.Departamento + "</td>"
+    //                + "<td>" + empleado.Supervisor + "</td>"
+    //                + "<td>"
+    //                + "           <button class='btn-success' onclick='Edit(" + empleado.IdEmpleado + ")' style='margin-right:5px;'>Edit</button>"
+    //                + "           <button class='btn-danger' onclick='Delete(" + empleado.IdEmpleado + ")'>Delete</button>"
+    //                + "</td>"
+    //                +"</tr>"
+    //            );
+    //        });
+    //    });
+    //}
+
+    //function Edit(IdEmpleado) {
+    //    if (IdEmpleado > 0) {
+    //        $.getJSON("/Empleados/GetById?id" + IdEmpleado, function (empleado) {
+    //            $("txtIdEmpleado").val(empleado.IdEmpleado);
+    //            $("txtNombreCompleto").val(empleado.NombreCompleto);
+    //            $("txtPosicion").val(empleado.Posicion);
+    //            $("txtDepartamento").val(empleado.Departamento);
+    //            $("txtSupervisor").val(empleado.Supervisor);
+    //        });
+    //    }
+    //}
+
+    //function Delete(IdEmpleado) {
+    //    if (IdEmpleado > 0) {
+    //        $.ajax({
+    //            url: "/Empleados/Delete?id" + IdEmpleado,
+    //            type: 'DELETE',
+    //            dataType: 'json',
+    //            success: function (data) {
+    //            },
+    //            error: function (ex) {
+    //                console.log('Error en la operacion');
+    //            }
+    //        });
+    //    }
+    //}
+
+    $("#btnSave").click(function () {
+        var oEmpleado = {
+            IdEmpleado: $("#txtIdEmpleado").val(),
+            NombreCompleto: $("#txtNombreCompleto").val(),
+            Posicion: $("#txtPosicion").val(),
+            Departamento: $("#txtDepartamento").val(),
+            Supervisor: $("#txtSupervisor").val()
+        };
+        $.post("/Empleados/AddUpdateEmpleados", oEmpleado).done(function (data) {
+       
+            });
+    });
+</script>

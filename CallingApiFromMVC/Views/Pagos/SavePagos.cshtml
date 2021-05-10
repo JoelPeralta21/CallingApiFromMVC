@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Pagos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<h2>Agregar Pagos<</h2>>
+<div class="form-group" style="display:none;">
+    <input id="txtIdPago" class="form-control" name="IdPago" />
+</div>
+<div class="form-group">
+    <label for="IdEmpleado">IdEmpleado:</label>
+    <input id="txtIdEmpleado" class="form-control" name="IdEmpleado" />
+</div>
+<div class="form-group">
+    <label for="Fecha">Fecha:</label>
+    <input id="txtFecha" class="form-control" name="Fecha" />
+</div>
+<div class="form-group">
+    <label for="NumeroCuenta">Numero de Cuenta:</label>
+    <input id="txtNumeroCuenta" class="form-control" name="NumeroCuenta" />
+</div>
+<div class="form-group">
+    <label for="Descripcion">Descripcion:</label>
+    <input id="txtDescripcion" class="form-control" name="Descripcion" />
+</div>
+<div class="form-group">
+    <label for="Total">Monto a Pagar:</label>
+    <input id="txtTotal" class="form-control" name="Total" />
+</div>
+<div class="form-group">
+    <label for="AprobadoPor">Aprobado Por:</label>
+    <input id="txtAprobadoPor" class="form-control" name="AprobadoPor" />
+</div>
+<div class="form-group">
+    <label for="Concepto">Concepto:</label>
+    <input id="txtConcepto" class="form-control" name="Concepto" />
+</div>
+<div class="form-group" style="display:none;">
+<input id="txtMontoTotal" class="form-control" name="MontoTotal" />
+</div>
+<div class="form-group" style="display:none;">
+    <input id="txtNombreEmpleado" class="form-control" name="NombreEmpleado" />
+</div>
+<div class="text-center panel.body">
+    @*<button id="btnSave" class="btn btn-primary">Insertar</button>*@
+    <a href="@Url.Action("ListaEmpleados", "Empleados")" class="btn btn-success float-left" id="btnSave">Registrar</a>
+</div>
+
+
+<script type="text/javascript">
+
+    $("#btnSave").click(function () {
+        var oPagos = {
+            IdPago: $("#txtIdPago").val(),
+            IdEmpleado: $("#txtIdEmpleado").val(),
+            Fecha: $("#txtFecha").val(),
+            NumeroCuenta: $("#txtNumeroCuenta").val(),
+            Descripcion: $("#txtDescripcion").val(),
+            Total: $("#txtTotal").val(),
+            AprobadoPor: $("#txtAprobadoPor").val(),
+            Concepto: $("#txtConcepto").val(),
+
+
+        };
+        $.post("/Pagos/AddUpdatePagos", oPagos).done(function (data) {
+        });
+    });
+</script>

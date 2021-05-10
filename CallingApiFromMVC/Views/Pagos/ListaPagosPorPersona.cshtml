@@ -1,0 +1,70 @@
+﻿@model IEnumerable<CallingApiFromMVC.Models.Pagos>
+
+
+@{
+    ViewData["Title"] = "ListaPagos";
+}
+
+<h1>ListaPagos</h1>
+<h4>Empleados</h4>
+<hr />
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:auto">
+                Cod.Pago
+            </th>
+            <th style="width:auto">
+                Fecha
+            </th>
+            <th style="width:auto">
+                Num.Cuenta
+            </th>
+            <th style="width:auto">
+                Descripcion
+            </th>
+            <th style="width:auto">
+                Total
+            </th>
+            <th style="width:auto">
+                Aprobado Por
+            </th>
+            <th style="width:auto">
+                Concepto
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdPago)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroCuenta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AprobadoPor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Concepto)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

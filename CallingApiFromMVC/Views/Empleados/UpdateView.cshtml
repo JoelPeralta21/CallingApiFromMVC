@@ -1,0 +1,48 @@
+﻿@model CallingApiFromMVC.Models.Empleados
+
+@{
+    ViewData["Title"] = "UpdateView";
+}
+
+<h1>UpdateView</h1>
+
+<h4>Empleados</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateView">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NombreCompleto" class="control-label"></label>
+                <input asp-for="NombreCompleto" class="form-control" />
+                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Posicion" class="control-label"></label>
+                <input asp-for="Posicion" class="form-control" />
+                <span asp-validation-for="Posicion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Departamento" class="control-label"></label>
+                <input asp-for="Departamento" class="form-control" />
+                <span asp-validation-for="Departamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Supervisor" class="control-label"></label>
+                <input asp-for="Supervisor" class="form-control" />
+                <span asp-validation-for="Supervisor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
